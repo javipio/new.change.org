@@ -1,0 +1,85 @@
+.login_page {
+  position: fixed;
+  top: calc(50% - 50px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .login_content {
+    background: rgb(99, 37, 118);
+    padding: 40px;
+    min-width: 400px;
+
+    h1 {
+      font-weight: normal;
+      letter-spacing: 0.2em;
+      color: white;
+      text-align: center;
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.599);
+    }
+
+    .form {
+      .recover {
+        display: inline-block;
+        color: white;
+        border-bottom: 1px solid white;
+        padding-bottom: 1px;
+        margin-bottom: 8px;
+        cursor: pointer;
+      }
+    }
+
+    .oauth {
+      text-align: center;
+      margin: 16px 0;
+
+      span {
+        position: relative;
+        color: white;
+
+        &::before {
+          content: '';
+          height: 1px;
+          position: absolute;
+          width: 40px;
+          background: white;
+          left: -44px;
+          top: calc(50% + 1px);
+        }
+
+        &::after {
+          content: '';
+          height: 1px;
+          position: absolute;
+          width: 40px;
+          background: white;
+          right: -44px;
+          top: calc(50% + 1px);
+        }
+      }
+
+      .providers {
+        margin-top: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .icon {
+          margin: 0 8px;
+
+          svg {
+            fill: white;
+            width: 24px;
+          }
+        }
+      }
+    }
+
+    .register {
+      color: white;
+      float: right;
+      border-bottom: 1px solid white;
+    }
+  }
+}

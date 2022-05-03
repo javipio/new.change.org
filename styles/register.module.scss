@@ -1,0 +1,101 @@
+.register_page {
+  position: fixed;
+  top: calc(50% - 50px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .register_content {
+    background: rgb(99, 37, 118);
+    padding: 40px;
+
+    .type {
+      display: flex;
+      justify-content: flex-start;
+      font-size: x-large;
+      letter-spacing: 0.1em;
+      color: white;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.542);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+
+      div {
+        flex-basis: calc(50% - 12px);
+        text-align: center;
+        cursor: pointer;
+
+        &.active {
+          text-decoration: underline;
+        }
+
+        &:nth-child(1) {
+          margin-right: 12px;
+        }
+
+        &:nth-child(2) {
+          margin-left: 12px;
+        }
+      }
+    }
+
+    .form {
+      display: flex;
+      flex-wrap: wrap;
+
+      label {
+        flex-basis: calc(50% - 12px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-bottom: 16px;
+
+        span {
+          color: white;
+        }
+
+        input {
+          margin-top: 2px;
+          width: 100%;
+          padding: 4px 8px;
+          outline: none !important;
+          border: none;
+        }
+
+        &:nth-child(even) {
+          margin-left: 12px;
+        }
+
+        &:nth-child(odd) {
+          margin-right: 12px;
+        }
+      }
+
+      .submit {
+        width: 100%;
+        padding: 8px 0;
+        outline: none;
+        border: 2px solid white;
+        background: transparent;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          background-color: white;
+          color: black;
+        }
+
+        &.disabled {
+          cursor: not-allowed;
+          color: rgba(255, 255, 255, 0.6);
+          border-color: rgba(255, 255, 255, 0.6);
+
+          &:hover {
+            background-color: transparent !important;
+            color: rgba(255, 255, 255, 0.6) !important;
+          }
+        }
+      }
+    }
+  }
+}

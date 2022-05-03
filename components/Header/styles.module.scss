@@ -1,0 +1,122 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 16px 0;
+  background: rgb(86, 43, 109);
+  // background: #790693;
+  width: 100%;
+  z-index: 10;
+
+  .header_wrapper {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        height: 80%;
+      }
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      flex-grow: 3;
+      padding: 0 32px;
+
+      label {
+        flex-grow: 2;
+        position: relative;
+
+        .search_icon {
+          position: absolute;
+          left: 8px;
+          top: 0;
+
+          svg {
+            fill: rgb(111, 111, 111);
+          }
+        }
+
+        input {
+          width: 100%;
+          padding: 12px 34px;
+          border: none;
+          border-radius: 5px;
+
+          &:focus {
+            outline: 2px solid rgba(172, 172, 172, 0.611);
+          }
+        }
+
+        .config_icon {
+          position: absolute;
+          right: 8px;
+          top: 0;
+        }
+      }
+
+      .start_petition {
+        display: flex;
+        align-items: center;
+        align-self: stretch;
+        margin-left: 16px;
+        background: white;
+        padding: 0 8px;
+        border-radius: 5px;
+      }
+    }
+
+    .navigation {
+      flex-grow: 2;
+
+      ul {
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+
+        li {
+          padding: 0 8px;
+
+          svg {
+            fill: white;
+          }
+        }
+      }
+    }
+
+    .profile {
+      height: 100%;
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .profile_pic {
+        height: 60%;
+
+        img {
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+
+      .roid {
+        display: none;
+        margin-left: 16px;
+
+        svg {
+          width: 30px;
+          fill: white;
+        }
+      }
+    }
+  }
+}

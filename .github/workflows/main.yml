@@ -1,0 +1,36 @@
+name: CD
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Copiar el repo
+        uses: actions/checkout@v2
+      - name: Instalar clave SSH
+        id: ssh_key
+        run: |
+          mkdir -p /home/runner/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/id_rsa
+          sudo chmod 600 /home/runner/.ssh/id_rsa
+      - name: Guardar variables de entorno
+        run: echo "${{ secrets.ENV }}" > .env
+      - name: Parar orcinus en el servidor
+        run: |
+          sudo apt install curl -y
+          curl -X POST -H 'Content-Type: application/json' -d '{ "secret": "${{secrets.WEBHOOK_SECRET }}", "action": "STOP"}' ${{ secrets.WEBHOOK_ENDPOINT }}
+      - name: Subir el repo compilado
+        id: upload
+        run: |
+          rsync -e 'ssh -i /home/runner/.ssh/id_rsa -o "StrictHostKeyChecking no"' --exclude 'node_modules' -avz ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/orcinus
+        continue-on-error: true
+      - name: Reiniciar servidor
+        if: always()
+        run: |
+          curl -X POST -H 'Content-Type: application/json' -d '{ "secret": "${{secrets.WEBHOOK_SECRET }}", "action": "START"}' ${{ secrets.WEBHOOK_ENDPOINT }}

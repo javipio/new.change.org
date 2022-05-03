@@ -1,0 +1,19 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+
+  span {
+    color: white;
+  }
+
+  input {
+    margin-top: 2px;
+    width: 100%;
+    padding: 4px 8px;
+    outline: none !important;
+    border: none;
+  }
+}

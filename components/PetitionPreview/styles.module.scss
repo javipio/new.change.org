@@ -1,0 +1,96 @@
+.petition_preview_wrapper {
+  position: fixed;
+  top: calc(50% + 50px); // Mitad del tamaño del header inicial
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+
+  .petition_preview {
+    padding: 60px 40px;
+    border-radius: 8px;
+    background: rgb(106, 48, 135);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+
+    & > div {
+      flex-basis: 50%;
+    }
+
+    .stats {
+      margin-right: 16px;
+      .img {
+        img {
+          width: 100%;
+          display: block;
+        }
+      }
+
+      .voting_area {
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+
+        p {
+          color: white;
+
+          span {
+            display: inline-block;
+            background: rgb(176, 77, 238);
+            padding: 8px;
+            border-radius: 8px;
+            border: 2px solid rgb(88, 9, 161);
+          }
+        }
+
+        .buttons {
+          display: flex;
+          flex-direction: column;
+
+          a {
+            background: rgb(65, 14, 86);
+            color: white;
+            padding: 8px 32px;
+            border-radius: 8px;
+
+            &:nth-child(1) {
+              margin-bottom: 16px;
+            }
+          }
+        }
+      }
+    }
+
+    .info {
+      margin-left: 16px;
+
+      h1,
+      .body,
+      .user_info {
+        background: white;
+        padding: 16px 12px;
+        border-radius: 4px;
+        text-align: justify;
+      }
+
+      h1 {
+        font-weight: normal;
+        letter-spacing: 0.2em;
+      }
+
+      .body {
+        margin: 24px 0;
+      }
+
+      .user_info {
+        text-align: right;
+
+        a {
+          text-decoration: underline;
+          color: rgb(56, 133, 222);
+        }
+      }
+    }
+  }
+}
