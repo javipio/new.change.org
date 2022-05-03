@@ -2,7 +2,7 @@ import Icon from '@components/Icon';
 import Input from '@components/Input';
 import styles from '@styles/login.module.scss';
 import Link from 'next/link';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 const icons = [
   {
@@ -30,7 +30,7 @@ const icons = [
 export default function Login() {
   const [state, setState] = useState({ name: '', password: '' });
 
-  const changeHandler = (e) =>
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) =>
     setState((st) => ({ ...st, [e.target.name]: e.target.value }));
 
   return (
@@ -57,8 +57,8 @@ export default function Login() {
         <div className={styles.oauth}>
           <span>Inicio rápido</span>
           <div className={styles.providers}>
-            {icons.map(({ d, viewBox }) => (
-              <Link href="#">
+            {icons.map(({ d, viewBox }, i) => (
+              <Link href="#" passHref key={`oaut_prov-${i}`}>
                 <Icon d={d} viewBox={viewBox} className={styles.icon} />
               </Link>
             ))}

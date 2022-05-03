@@ -32,7 +32,7 @@ export default function Header() {
       <Wrap>
         <div className={styles.header_wrapper}>
           <div className={styles.logo}>
-            <Link href="/">
+            <Link href="/" passHref>
               <img src="/logo.png" alt="" />
             </Link>
           </div>
@@ -58,7 +58,7 @@ export default function Header() {
             <ul>
               {navigationItems.map(({ viewBox, d, href }, idx) => (
                 <li key={`nav_item-${idx}`}>
-                  <Link href={href}>
+                  <Link href={href} passHref>
                     <Icon viewBox={viewBox} d={d} />
                   </Link>
                 </li>
@@ -67,7 +67,7 @@ export default function Header() {
           </nav>
           <div className={styles.profile}>
             <div className={styles.profile_pic}>
-              <Link href="/login">
+              <Link href="/login" passHref>
                 <img src="/lucho.jpg" alt="" />
               </Link>
             </div>

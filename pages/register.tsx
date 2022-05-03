@@ -1,7 +1,7 @@
 import Icon from '@components/Icon';
 import Wrap from '@components/Wrap';
 import styles from '@styles/register.module.scss';
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEvent, ChangeEventHandler, useState } from 'react';
 
 const AccTypes = ['usuario', 'empresa'] as const;
 type AccType = typeof AccTypes[number];
@@ -46,7 +46,7 @@ export default function Register() {
   });
 
   const changeHandlerWrapper = (accType: AccType) => {
-    return (e) => {
+    return (e: ChangeEvent<HTMLInputElement>) => {
       if (accType === 'usuario')
         setUserState(
           (val) => ({ ...val, [e.target.name]: e.target.value } as UserState)
@@ -99,7 +99,7 @@ export default function Register() {
 }
 
 const userInps: {
-  name: [keyof UserState]; //TODO: arreglar lío de interfaces
+  name: keyof UserState;
   text: string;
   type: 'text' | 'password';
 }[] = [
@@ -137,13 +137,13 @@ const userInps: {
 
 interface FormProps<T> {
   state: T;
-  changeHandler: () => () => void;
+  changeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const UserForm = ({ state, changeHandler }: FormProps<UserState>) => (
   <>
     {userInps.map(({ name, text, type }) => (
-      <label>
+      <label key={`user_inp-${name}`}>
         <span>{text}</span>
         <input
           name={name}
@@ -156,7 +156,11 @@ const UserForm = ({ state, changeHandler }: FormProps<UserState>) => (
   </>
 );
 
-const enterpriseInps = [
+const enterpriseInps: {
+  name: keyof EnterpriseState;
+  text: string;
+  type: 'text' | 'password';
+}[] = [
   {
     name: 'name',
     text: 'Nombre de usuario',
@@ -195,7 +199,7 @@ const EnterpriseForm = ({
 }: FormProps<EnterpriseState>) => (
   <>
     {enterpriseInps.map(({ name, text, type }) => (
-      <label>
+      <label key={`entp_inp-${name}`}>
         <span>{text}</span>
         <input
           name={name}
