@@ -1,28 +1,15 @@
-import Icon from '@components/Icon';
+import { EnterpriseForm, UserForm } from '@components/RegisterForm';
 import Wrap from '@components/Wrap';
 import styles from '@styles/register.module.scss';
-import { ChangeEvent, ChangeEventHandler, useState } from 'react';
+import Link from 'next/link';
+import { ChangeEvent, useEffect, useState } from 'react';
+import type {
+  RegisterEnterpriseState as EnterpriseState,
+  RegisterUserState as UserState,
+} from 'types';
 
 const AccTypes = ['usuario', 'empresa'] as const;
 type AccType = typeof AccTypes[number];
-
-interface State {
-  name: string;
-  password: string;
-  confirmationPasswd: string;
-}
-
-interface UserState extends State {
-  username: string;
-  dni: string;
-  mail: string;
-}
-
-interface EnterpriseState extends State {
-  sector: string;
-  domain: string;
-  cif: string;
-}
 
 const defaultState = {
   name: '',
@@ -45,17 +32,33 @@ export default function Register() {
     domain: '',
   });
 
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    const currentState = accType === 'usuario' ? userState : enterpriseState;
+    let tempIsValid = Object.values(currentState).reduce(
+      (prev, curr) => prev && curr,
+      true
+    );
+
+    tempIsValid =
+      tempIsValid && currentState.password == currentState.confirmationPasswd;
+
+    setIsValid(tempIsValid);
+  }, [userState, enterpriseState]);
+
   const changeHandlerWrapper = (accType: AccType) => {
     return (e: ChangeEvent<HTMLInputElement>) => {
       if (accType === 'usuario')
-        setUserState(
-          (val) => ({ ...val, [e.target.name]: e.target.value } as UserState)
-        );
+        setUserState((val) => ({
+          ...val,
+          [e.target.name as keyof UserState]: e.target.value,
+        }));
       else
-        setEnterpriseState(
-          (val) =>
-            ({ ...val, [e.target.name]: e.target.value } as EnterpriseState)
-        );
+        setEnterpriseState((val) => ({
+          ...val,
+          [e.target.name as keyof UserState]: e.target.value,
+        }));
     };
   };
 
@@ -70,144 +73,33 @@ export default function Register() {
                 className={accType === val ? styles.active : ''}
                 onClick={() => setAcctype(val)}
               >
-                {val.toUpperCase()}
+                <span>{val.toUpperCase()}</span>
               </div>
             ))}
           </div>
           <div className={styles.form}>
-            {accType === 'usuario' ? (
-              <UserForm
-                state={userState}
-                changeHandler={changeHandlerWrapper('usuario')}
-              />
-            ) : (
-              <EnterpriseForm
-                state={enterpriseState}
-                changeHandler={changeHandlerWrapper('empresa')}
-              />
-            )}
+            <div className={styles.grid}>
+              {accType === 'usuario' ? (
+                <UserForm
+                  state={userState}
+                  changeHandler={changeHandlerWrapper('usuario')}
+                />
+              ) : (
+                <EnterpriseForm
+                  state={enterpriseState}
+                  changeHandler={changeHandlerWrapper('empresa')}
+                />
+              )}
+            </div>
             <input
-              className={`${styles.submit} ${styles.disabled}`}
+              className={`${styles.submit} ${isValid ? '' : styles.disabled}`}
               type="submit"
               value="Registrarse"
             />
           </div>
+          <Link href="/login">¿Ya tienes cuenta?</Link>
         </div>
       </Wrap>
     </div>
   );
 }
-
-const userInps: {
-  name: keyof UserState;
-  text: string;
-  type: 'text' | 'password';
-}[] = [
-  {
-    name: 'name',
-    text: 'Nombre de usuario',
-    type: 'text',
-  },
-  {
-    name: 'username',
-    text: 'Nombre completo',
-    type: 'text',
-  },
-  {
-    name: 'dni',
-    text: 'DNI',
-    type: 'text',
-  },
-  {
-    name: 'mail',
-    text: 'Correo electrónico',
-    type: 'text',
-  },
-  {
-    name: 'password',
-    text: 'Contraseña',
-    type: 'password',
-  },
-  {
-    name: 'confirmationPasswd',
-    text: 'Confirmar contraseña',
-    type: 'password',
-  },
-];
-
-interface FormProps<T> {
-  state: T;
-  changeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
-}
-
-const UserForm = ({ state, changeHandler }: FormProps<UserState>) => (
-  <>
-    {userInps.map(({ name, text, type }) => (
-      <label key={`user_inp-${name}`}>
-        <span>{text}</span>
-        <input
-          name={name}
-          onChange={changeHandler}
-          value={state[name]}
-          type={type}
-        />
-      </label>
-    ))}
-  </>
-);
-
-const enterpriseInps: {
-  name: keyof EnterpriseState;
-  text: string;
-  type: 'text' | 'password';
-}[] = [
-  {
-    name: 'name',
-    text: 'Nombre de usuario',
-    type: 'text',
-  },
-  {
-    name: 'sector',
-    text: 'Sector empresarial',
-    type: 'text',
-  },
-  {
-    name: 'cif',
-    text: 'CIF',
-    type: 'text',
-  },
-  {
-    name: 'domain',
-    text: 'Dominio empresarial',
-    type: 'text',
-  },
-  {
-    name: 'password',
-    text: 'Contraseña',
-    type: 'password',
-  },
-  {
-    name: 'confirmationPasswd',
-    text: 'Confirmar contraseña',
-    type: 'password',
-  },
-];
-
-const EnterpriseForm = ({
-  state,
-  changeHandler,
-}: FormProps<EnterpriseState>) => (
-  <>
-    {enterpriseInps.map(({ name, text, type }) => (
-      <label key={`entp_inp-${name}`}>
-        <span>{text}</span>
-        <input
-          name={name}
-          onChange={changeHandler}
-          value={state[name]}
-          type={type}
-        />
-      </label>
-    ))}
-  </>
-);

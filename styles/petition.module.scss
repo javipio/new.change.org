@@ -1,0 +1,111 @@
+.petitions_page {
+  margin-top: 140px;
+
+  .main_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .left,
+    .right {
+      // flex-grow: 1;
+      flex-basis: 48%;
+    }
+
+    .left {
+      .img {
+        margin-bottom: 14px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      span {
+        letter-spacing: 0.05em;
+        font-weight: 500;
+      }
+
+      .goal_status {
+        margin-top: 14px;
+        width: 100%;
+        height: 16px;
+        background: rgba(181, 181, 181, 0.59);
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+
+        .current_status {
+          position: absolute;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background: linear-gradient(
+            90deg,
+            rgb(84, 12, 156) 0%,
+            rgb(166, 128, 203) 100%
+          );
+        }
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 16px;
+
+        & > div {
+          color: white;
+          margin-left: 32px;
+          padding: 12px 26px;
+          border-radius: 4px;
+
+          cursor: pointer;
+        }
+
+        .vote {
+          background: rgb(84, 12, 156);
+        }
+
+        .donate {
+          border: 2px solid rgb(84, 12, 156);
+          color: rgb(84, 12, 156);
+        }
+      }
+    }
+
+    .right {
+      h1 {
+        font-size: 40px;
+        letter-spacing: 0.2em;
+        font-weight: normal;
+      }
+
+      .content {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        padding: 16px 0;
+        margin: 16px 0;
+        text-align: justify;
+      }
+
+      .author {
+        display: flex;
+        justify-content: flex-end;
+
+        img {
+          height: 24px;
+          border-radius: 50%;
+        }
+
+        span {
+          margin-left: 8px;
+
+          a {
+            text-decoration: underline;
+            color: rgb(68, 137, 234);
+          }
+        }
+      }
+    }
+  }
+}

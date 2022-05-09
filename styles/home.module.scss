@@ -1,0 +1,44 @@
+.home_page {
+  .landing {
+    height: 100vh;
+    width: 100%;
+    background: black;
+    display: none;
+
+    .text {
+      max-width: 80vw;
+      transition: 0.3s;
+
+      span {
+        color: white;
+        font-size: 64px;
+        letter-spacing: 0.1em;
+        text-align: center;
+      }
+    }
+  }
+
+  .tendence {
+    margin-top: 48px;
+
+    h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: normal;
+      letter-spacing: 0.1em;
+    }
+
+    .petitions {
+      margin-top: 48px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 100%;
+      overflow: hidden;
+
+      & > div {
+        flex-basis: 30%;
+      }
+    }
+  }
+}
