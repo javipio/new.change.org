@@ -19,8 +19,14 @@ export default function Input({
 }: Props) {
   return (
     <label className={`${styles.input} ${className}`}>
-      <span>{title}</span>
-      <input type={type} name={name} onChange={changeHandler} value={state} />
+      {/* <span>{title}</span> */}
+      <input
+        type={type}
+        name={name}
+        onChange={changeHandler}
+        value={state}
+        placeholder={title}
+      />
     </label>
   );
 }

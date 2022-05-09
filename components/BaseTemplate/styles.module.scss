@@ -1,7 +1,7 @@
 .main {
-  background: url('/background.webp');
-  min-height: calc(100vh - 100px);
-  margin-top: 100px;
+  padding-top: 100px;
+  // background: url('/background.webp');
+  min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
 }

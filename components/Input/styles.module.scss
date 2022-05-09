@@ -4,10 +4,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   margin-bottom: 16px;
-
-  span {
-    color: white;
-  }
+  position: relative;
 
   input {
     margin-top: 2px;
@@ -15,5 +12,27 @@
     padding: 4px 8px;
     outline: none !important;
     border: none;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(199, 199, 199);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgb(144, 88, 241);
+    height: 2px;
+    width: 100%;
+    transform: scaleX(0);
+    transition: 0.3s;
+  }
+
+  &:focus-within {
+    &::after {
+      transform: scaleX(100%);
+    }
   }
 }
