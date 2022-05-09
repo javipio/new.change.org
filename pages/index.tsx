@@ -64,8 +64,8 @@ export default function Home({ petitions }: Props) {
         <div className={styles.tendence}>
           <h2>PETICIONES QUE SON TENDENCIA</h2>
           <div className={styles.petitions}>
-            {petitions.map((pt) => (
-              <PetitionPreview {...pt} />
+            {petitions.map((pt, i) => (
+              <PetitionPreview {...pt} key={`petition-${i}`} />
             ))}
           </div>
         </div>

@@ -65,8 +65,8 @@ export default function Create() {
         <div className={styles.info}>
           <h2>Ayuda</h2>
           <ul>
-            {slides[currentSlide].help.map(({ info, example }) => (
-              <li>
+            {slides[currentSlide].help.map(({ info, example }, i) => (
+              <li key={`help_${currentSlide}-${i}`}>
                 <h3>{info}</h3>
                 <p>{example}</p>
               </li>

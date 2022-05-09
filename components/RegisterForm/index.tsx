@@ -56,6 +56,7 @@ export const UserForm = ({ state, changeHandler }: FormProps<UserState>) => (
         state={state[name]}
         type={type}
         title={title}
+        key={`user_${title}`}
       />
     ))}
   </>
@@ -110,6 +111,7 @@ export const EnterpriseForm = ({
         state={state[name]}
         type={type}
         title={title}
+        key={`entp_${title}`}
       />
     ))}
   </>
