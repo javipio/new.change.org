@@ -52,24 +52,26 @@ export default function Home({ petitions }: Props) {
 
   return (
     <div className={styles.home_page}>
-      <Wrap>
-        <div className={`${styles.landing} flex-center`}>
-          <div
-            className={`${styles.text} flex-center`}
-            ref={phraseContainerRef}
-          >
-            <span>{phrase}</span>
-          </div>
-        </div>
-        <div className={styles.tendence}>
+      <div className={styles.tendence}>
+        <Wrap>
           <h2>PETICIONES QUE SON TENDENCIA</h2>
           <div className={styles.petitions}>
             {petitions.map((pt, i) => (
               <PetitionPreview {...pt} key={`petition-${i}`} />
             ))}
           </div>
-        </div>
-      </Wrap>
+        </Wrap>
+      </div>
+      <div className={styles.interests}>
+        <h2>TE PUEDE INTERESAR</h2>
+        <Wrap>
+          <div className={styles.petitions}>
+            {petitions.slice(0, 3).map((pt, i) => (
+              <PetitionPreview {...pt} key={`petition-${i}`} />
+            ))}
+          </div>
+        </Wrap>
+      </div>
     </div>
   );
 }

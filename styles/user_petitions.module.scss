@@ -1,0 +1,23 @@
+.user_petit_page {
+  margin-top: 48px;
+
+  h1 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+  }
+
+  .petitions {
+    margin-top: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    overflow: hidden;
+
+    & > div {
+      flex-basis: 30%;
+    }
+  }
+}

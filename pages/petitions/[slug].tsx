@@ -4,6 +4,7 @@ import { getPetitions } from '@utils/getPetitions';
 import { Petition } from 'types';
 import type { GetServerSideProps } from 'next';
 import Link from 'next/link';
+import Input from '@components/Input';
 
 interface Props {
   petition: Petition;
@@ -45,6 +46,27 @@ export default function PetitionPage({ petition }: Props) {
                 Petitición iniciada por:{' '}
                 <Link href="/">{petition.author.name}</Link>
               </span>
+            </div>
+            <div className={styles.comment}>
+              <h3>¿Quieres añadir un comentario?</h3>
+              <Input
+                name="name"
+                title="Escribe aquí"
+                changeHandler={() => {}}
+                state={''}
+              />
+              <div className={styles.comment_list}>
+                <div className={styles.user_comment}>
+                  <div className={styles.img}>
+                    <img
+                      src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+                      alt=""
+                    />
+                  </div>
+                  <span>Carlos hernandez - </span>
+                  <p>Lorem ipsum dolor sit amet</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

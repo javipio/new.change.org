@@ -56,7 +56,7 @@ export default function Login() {
             state={state.password}
           />
           <input type="submit" value="Enviar" />
-          <Link href="#">
+          <Link href="/recover">
             <a className={styles.recover}>¿No recuerdas la contraseña?</a>
           </Link>
         </div>

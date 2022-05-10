@@ -106,6 +106,33 @@
           }
         }
       }
+
+      .comment {
+        h3 {
+          font-weight: 500;
+          margin-bottom: 16px;
+        }
+
+        .comment_list {
+          margin-top: 32px;
+
+          .user_comment {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            span {
+              margin-inline: 8px;
+              font-weight: 500;
+            }
+
+            img {
+              width: 32px;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
     }
   }
 }

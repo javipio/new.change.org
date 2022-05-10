@@ -1,0 +1,54 @@
+.recover_page {
+  position: fixed;
+  top: calc(50% - 50px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 24px -4px rgb(0 0 0 / 20%);
+  border-radius: 8px;
+  overflow: hidden;
+
+  .recover_content {
+    background: #fff;
+    padding: 40px;
+    min-width: 800px;
+
+    h1 {
+      font-weight: normal;
+      letter-spacing: 0.2em;
+      color: black;
+      text-align: center;
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.599);
+    }
+
+    .form {
+      display: grid;
+      grid-template: auto/1fr;
+      gap: 24px;
+      grid-gap: 24px;
+      padding-bottom: 16px;
+
+      input[type='submit'] {
+        width: 100%;
+        padding: 8px 0;
+        border: 2px solid black;
+        outline: none;
+        background: none;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          background-color: rgb(91, 27, 155);
+          color: white;
+          border-color: rgb(91, 27, 155);
+        }
+      }
+    }
+
+    .register {
+      color: black;
+      float: right;
+    }
+  }
+}
